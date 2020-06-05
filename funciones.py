@@ -22,12 +22,16 @@ funcion13=sympify(funcion13)
 
 
 #s2
-#funcion21='cos(pi*x)'
-#funcion21=sympify(funcion21)
-#funcion22='sen(pi*x)'
-#funcion22=sympify(funcion22)
+funcion21='cos(pi*x)'
+funcion21=sympify(funcion21)
+funcion22='sen(pi*x)'
+funcion22=sympify(funcion22)
 
-y=funcion*funcion13
+y=funcion*funcion12
 print(y)
-print(sp.integrate(y,(x,-1,1)))
+#print(sp.integrate(y,(x,0,1)))
+a11=sp.integrate(y,(x,0,1))
+print(a11)
+
+
 

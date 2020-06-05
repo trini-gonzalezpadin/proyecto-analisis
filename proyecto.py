@@ -4,7 +4,7 @@ from sympy import Symbol
 from sympy import sympify
 from sympy import sin, cos, tan, exp, log, ln, pi
 from sympy import integrate
-
+from numpy import array
 
 x = sp.Symbol('x')
 funcion=input("\nIngrese la funcion en formato explicito ")
@@ -39,7 +39,7 @@ funcion13=sympify(funcion13)
 #s2
 funcion21='cos(pi*x)'
 funcion21=sympify(funcion21)
-funcion22='sen(pi*x)'
+funcion22='sin(pi*x)'
 funcion22=sympify(funcion22)
 
 #s3
@@ -52,6 +52,7 @@ funcion33=sympify(funcion31)
 
 #para la opcion 1: subespacio polinomios grado menor o igual a 2 
 #coeficientes de la matriz asociada para sub1 
+#cada coefinciente es el producto escalar usual que es la integral de un prodcuto de funciones
 if op==1:
     y11=funcion11*funcion11
     a11=sp.integrate(y11,(x,c,d))
@@ -71,26 +72,27 @@ if op==1:
     y33=funcion13*funcion13
     a33=sp.integrate(y33,(x,c,d))
 
-    m1=np.array([[a11,a12,a13],[a12,a22,a23],[a13,a23,a33]])
+    #matriz de coeficientes del sistema 
+    mat_A=np.array([[a11,a12,a13],[a12,a22,a23],[a13,a23,a33]])
+    print(mat_A)
 
     #matriz columna de terminos independientes 
 
     l1=funcion*funcion11
     b1=sp.integrate(l1,(x,c,d))
-
-
     l2=funcion*funcion12
     b2=sp.integrate(l2,(x,c,d))
-
     l3=funcion*funcion13
     b3=sp.integrate(l3,(x,c,d))
-
-    m2=np.array([b1,b2,b3])
-
+    mat_B=np.array([b1,b2,b3])
+    print(mat_B)
     # resolver el sistema 
-    z=np.linalg.solve(m1,m2)
-    print(z)
-    print('La solución del sistema asociado al problemas es: {z}')
+    mat_A_inv = np.linalg.inv(mat_A)
+    print('La matriz inversa asociada al sistema es:')
+    print(mat_A_inv)
+    res= np.matmul(mat_A_inv, mat_B)
+    print(res)
+    print('La solución del sistema asociado al problemas es: {res}')
 
 else:
     if op==2:

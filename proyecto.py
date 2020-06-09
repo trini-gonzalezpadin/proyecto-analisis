@@ -4,25 +4,24 @@ from sympy import Symbol
 from sympy import sympify
 from sympy import sin, cos, tan, exp, log, ln, pi
 from sympy import integrate
-from numpy import array
 funcion=''
 x = sp.Symbol('x')
 while (funcion==''):
     try:
-        funcion=input('\nIngrese la funcion en formato explicito como se muestra:\n\tPolinómicas: ax**2+b*x+c'+'\n\tTrigonométricas: sin(x) ,cos(x)'+'\n\tExponenicales :exp(x)\n\t')
+        funcion=input('\nIngrese la funcion en formato explicito como se muestra:\n\tPolinómicas: ax**2+b*x+c'+
+        '\n\tTrigonométricas: sin(x) ,cos(x)'+'\n\tExponenicales :exp(x)\n\t')
         funcion=sympify(funcion)
     except Exception:
         funcion=''
         print("Ingreso incorrecto de la funcion.Porfavor vuelva a intentarlo")
 #funcion=input("\nIngrese la funcion en formato explicito ")
 #funcion = sympify(funcion)#lo pasa a expresion porque era un string
-#print(funcion)
+print(funcion)
 
 print('Escriba el intervalo de aproximacion de la funcion:')
 c = float(input())
 d = float(input())
 print('Subespacios disponibles:')
-
 print('s1: Polinomios de grado menor o igual a dos:\n\tf1(x)=1' +
           '\n\tf2(x)=x\n\tf3(x)=x²')
 print('s2: Base trigonométrica:\n\tf1(x)=cos(pix)\n\t' +
@@ -74,6 +73,7 @@ if op==1:
     # Genero las matrices, una columna y otra cuadrada de 3x3, vacias:
     matrizB = np.zeros(3)
     matrizA = np.zeros((3, 3))
+    
     y11=funcion11*funcion11
     y12=funcion11*funcion12
     y13=funcion11*funcion13
@@ -82,8 +82,6 @@ if op==1:
     y33=funcion13*funcion13
     
     # Calculo de Matriz A:
-    # para definir las funciones que van en la intregal
-    # las calcule cada una.
 
     matrizA[0][0] = sp.integrate(y11,(x,c,d))
     matrizA[0][1] = sp.integrate(y12,(x,c,d))
@@ -122,23 +120,20 @@ else:
         # Genero las matrices, una columna y otra cuadrada , vacias:
         matrizB = np.zeros(2)
         matrizA = np.zeros((2, 2))
-
-#x⁴ x⁵ x⁶ x⁷
+       
         y11=funcion21*funcion21
         y12=funcion21*funcion22
         y22=funcion22*funcion22
-
+        
         matrizA[0][0] = sp.integrate(y11,(x,c,d))
         matrizA[0][1] = sp.integrate(y12,(x,c,d))
         matrizA[1][0] = sp.integrate(y12,(x,c,d))
         matrizA[1][1] = sp.integrate(y22,(x,c,d))
         print('Matriz A = ',matrizA)
-
-            
+      
         #matriz columna B 
         l1=funcion*funcion41
         l2=funcion*funcion42
-
         matrizB[0] = sp.integrate(l1,(x,c,d))
         matrizB[1] = sp.integrate(l2,(x,c,d))
         print('Matriz B = ',matrizB)

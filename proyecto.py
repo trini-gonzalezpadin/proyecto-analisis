@@ -107,7 +107,8 @@ if op==1:
     matrizX = np.matmul(matrizAInv,matrizB)
 
     print('Coeficientes = ',matrizX)
-    print ('La mejor aproximacion de la funicon es:')
+    print ('La mejor aproximacion de la funcion es :', matrizX[0],'.1+',matrizX[1],'.x+',matrizX[2],'.x^2')
+
 else:
     if op==2:
         # Genero las matrices, una columna y otra cuadrada , vacias:
@@ -139,7 +140,8 @@ else:
         matrizX = np.matmul(matrizAInv,matrizB)
 
         print('Coeficientes = ',matrizX)
-        print ('La mejor aproximacion de la funicon es:')
+        print ('La mejor aproximacion de la funcion es :', matrizX[0],'.cos(pix)+',matrizX[1],'.sen(pix)+')
+
 
   
     else:
@@ -188,7 +190,7 @@ else:
             matrizX = np.matmul(matrizAInv,matrizB)
 
             print('Coeficientes = ',matrizX)
-            print ('La mejor aproximacion de la funicon es:')
+            print ('La mejor aproximacion de la funcion es :', matrizX[0],'.X+',matrizX[1],'.x^3+',matrizX[2],'.x^5')
 
         else:
             # Genero las matrices, una columna y otra cuadrada , vacias:
@@ -220,7 +222,8 @@ else:
             matrizX = np.matmul(matrizAInv,matrizB)
 
             print('Coeficientes = ',matrizX)
-            print ('La mejor aproximacion de la funicon es:')
+            print ('La mejor aproximacion de la funcion es :', matrizX[0],'.1+',matrizX[1],'.x')
+            
 
 
             

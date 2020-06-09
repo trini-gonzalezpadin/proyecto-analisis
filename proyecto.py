@@ -5,11 +5,18 @@ from sympy import sympify
 from sympy import sin, cos, tan, exp, log, ln, pi
 from sympy import integrate
 from numpy import array
-
+funcion=''
 x = sp.Symbol('x')
-funcion=input("\nIngrese la funcion en formato explicito ")
-funcion = sympify(funcion)#lo pasa a expresion porque era un string
-print(funcion)
+while (funcion==''):
+    try:
+        funcion=input('\nIngrese la funcion en formato explicito como se muestra:\n\tPolinómicas: ax**2+b*x+c'+'\n\tTrigonométricas: sin(x) ,cos(x)'+'\n\tExponenicales :exp(x)\n\t')
+        funcion=sympify(funcion)
+    except Exception:
+        funcion=''
+        print("Ingreso incorrecto de la funcion.Porfavor vuelva a intentarlo")
+#funcion=input("\nIngrese la funcion en formato explicito ")
+#funcion = sympify(funcion)#lo pasa a expresion porque era un string
+#print(funcion)
 
 print('Escriba el intervalo de aproximacion de la funcion:')
 c = float(input())
@@ -17,11 +24,11 @@ d = float(input())
 print('Subespacios disponibles:')
 
 print('s1: Polinomios de grado menor o igual a dos:\n\tf1(x)=1' +
-          '\n\tf2(x)=x\n\tf3(x)=x^2')
+          '\n\tf2(x)=x\n\tf3(x)=x²')
 print('s2: Base trigonométrica:\n\tf1(x)=cos(pix)\n\t' +
           'f2(x)=sen(pix)\n\tf3(x)=1')
 print('s3: Polinomios de grado impar hasta 5 :\n\tf1(x)=x' +
-          '\n\tf2(x)=x^3\n\tf3(x)=x^5')
+          '\n\tf2(x)=x³\n\tf3(x)=x⁵')
 print('s4: Recta:\n\tf1(x)=1\n\t' +
           'f2(x)=x')
 
@@ -51,7 +58,7 @@ funcion31=sympify(funcion31)
 funcion32='x**3'
 funcion32=sympify(funcion32)
 funcion33='x**5'
-funcion33=sympify(funcion31)
+funcion33=sympify(funcion33)
 
 #s4
 funcion41='1'
@@ -107,7 +114,8 @@ if op==1:
     matrizX = np.matmul(matrizAInv,matrizB)
 
     print('Coeficientes = ',matrizX)
-    print ('La mejor aproximacion de la funcion es :', matrizX[0],'.1+',matrizX[1],'.x+',matrizX[2],'.x^2')
+    print('La mejor aproximacion de la funcion es : {} + {} x + {} x²'.format(matrizX[0], matrizX[1], matrizX[2]))
+    #print ('La mejor aproximacion de la funcion es :', matrizX[0],'.1+',matrizX[1],'.x+',matrizX[2],'.x^2')
 
 else:
     if op==2:
@@ -115,7 +123,7 @@ else:
         matrizB = np.zeros(2)
         matrizA = np.zeros((2, 2))
 
-
+#x⁴ x⁵ x⁶ x⁷
         y11=funcion21*funcion21
         y12=funcion21*funcion22
         y22=funcion22*funcion22
@@ -140,10 +148,8 @@ else:
         matrizX = np.matmul(matrizAInv,matrizB)
 
         print('Coeficientes = ',matrizX)
-        print ('La mejor aproximacion de la funcion es :', matrizX[0],'.cos(pix)+',matrizX[1],'.sen(pix)+')
+        print('La mejor aproximacion de la funcion es : {} cos(pix)+ {}sen(pix)'.format(matrizX[0], matrizX[1]))
 
-
-  
     else:
         if op==3:
             # Genero las matrices, una columna y otra cuadrada de 3x3, vacias:
@@ -190,7 +196,7 @@ else:
             matrizX = np.matmul(matrizAInv,matrizB)
 
             print('Coeficientes = ',matrizX)
-            print ('La mejor aproximacion de la funcion es :', matrizX[0],'.X+',matrizX[1],'.x^3+',matrizX[2],'.x^5')
+            print('La mejor aproximacion de la funcion es : {}x + {}x³ + {}x⁵'.format(matrizX[0], matrizX[1], matrizX[2]))
 
         else:
             # Genero las matrices, una columna y otra cuadrada , vacias:
@@ -222,8 +228,7 @@ else:
             matrizX = np.matmul(matrizAInv,matrizB)
 
             print('Coeficientes = ',matrizX)
-            print ('La mejor aproximacion de la funcion es :', matrizX[0],'.1+',matrizX[1],'.x')
-            
+            print('La mejor aproximacion de la funcion es : {} + {} x '.format(matrizX[0], matrizX[1]))
 
 
             
